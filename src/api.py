@@ -39,6 +39,12 @@ except Exception as e:
     logger.error(f"Failed to load model: {e}")
     model = None
 
+from fastapi.responses import RedirectResponse
+
+@app.get("/", tags=["System"])
+def root():
+    return RedirectResponse(url="/docs")
+
 @app.get("/health", tags=["System"])
 def health_check():
     return {"status": "ok", "model_loaded": model is not None}
