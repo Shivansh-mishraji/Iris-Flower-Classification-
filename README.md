@@ -24,12 +24,12 @@ This project elevates the classic Iris Classification dataset from a simple Jupy
 
 ```mermaid
 graph TD
-    A[Frontend Client (HTML/CSS/JS)] -->|REST POST /predict| B(FastAPI Server)
-    B --> C{Pydantic Validation}
-    C -->|Valid| D[Inference Engine (src/inference.py)]
-    C -->|Invalid| E[422 Error Response]
-    D --> F[(Trained Model: iris_log_reg_model.pkl)]
-    F -.->|Trained via| G[Training Script (src/train.py)]
+    A["Frontend Client (HTML/CSS/JS)"] -->|REST POST /predict| B("FastAPI Server")
+    B --> C{"Pydantic Validation"}
+    C -->|Valid| D["Inference Engine (src/inference.py)"]
+    C -->|Invalid| E["422 Error Response"]
+    D --> F[("Trained Model: iris_log_reg_model.pkl")]
+    F -.->|Trained via| G["Training Script (src/train.py)"]
     D -->|Predictions & Probabilities| B
     B -->|JSON Response| A
 ```
