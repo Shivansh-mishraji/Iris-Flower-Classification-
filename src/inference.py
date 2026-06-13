@@ -37,4 +37,20 @@ def predict_iris(model, sepal_length: float, sepal_width: float, petal_length: f
     except Exception:
         probabilities = []
         
-    return str(prediction), probabilities
+    # Map integer labels back to string names if the model was trained with LabelEncoder
+    label_mapping = {
+        0: 'Iris-setosa',
+        1: 'Iris-versicolor',
+        2: 'Iris-virginica',
+        '0': 'Iris-setosa',
+        '1': 'Iris-versicolor',
+        '2': 'Iris-virginica'
+    }
+    
+    pred_str = str(prediction)
+    if prediction in label_mapping:
+        pred_str = label_mapping[prediction]
+    elif pred_str in label_mapping:
+        pred_str = label_mapping[pred_str]
+        
+    return pred_str, probabilities
