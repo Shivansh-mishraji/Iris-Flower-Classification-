@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorContainer = document.getElementById('error-container');
     
     // API URL - change if deployed
-    const API_URL = 'http://localhost:8000/predict';
+    const API_URL = '/predict';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
