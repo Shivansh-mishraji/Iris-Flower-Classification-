@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./iris_log_reg_model.pkl:/app/iris_log_reg_model.pkl
+    environment:
+      - ENV=development
