@@ -1,6 +1,4 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import uvicorn
@@ -40,22 +38,6 @@ try:
 except Exception as e:
     logger.error(f"Failed to load model: {e}")
     model = None
-
-# Serve frontend files
-frontend_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
-app.mount("/static", StaticFiles(directory=frontend_path), name="static")
-
-@app.get("/", tags=["UI"])
-def serve_frontend():
-    return FileResponse(os.path.join(frontend_path, "index.html"))
-
-@app.get("/style.css", tags=["UI"])
-def serve_css():
-    return FileResponse(os.path.join(frontend_path, "style.css"))
-
-@app.get("/app.js", tags=["UI"])
-def serve_js():
-    return FileResponse(os.path.join(frontend_path, "app.js"))
 
 @app.get("/health", tags=["System"])
 def health_check():

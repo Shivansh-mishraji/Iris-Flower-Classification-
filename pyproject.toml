@@ -13,6 +13,3 @@ dependencies = [
     "pytest==8.0.2",
     "httpx==0.27.0"
 ]
-
-[tool.vercel]
-entrypoint = "src.api:app"
