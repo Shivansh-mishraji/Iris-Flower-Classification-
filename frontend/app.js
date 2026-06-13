@@ -9,6 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // API URL - change if deployed
     const API_URL = '/predict';
 
+    // Sync Sliders and Number Inputs
+    const syncInputs = (id) => {
+        const slider = document.getElementById(id);
+        const num = document.getElementById(`${id}_num`);
+        
+        slider.addEventListener('input', (e) => {
+            num.value = e.target.value;
+        });
+        
+        num.addEventListener('input', (e) => {
+            slider.value = e.target.value;
+        });
+    };
+
+    ['sepal_length', 'sepal_width', 'petal_length', 'petal_width'].forEach(syncInputs);
+
+    // 3D Card Tilt Effect
+    const card = document.querySelector('.card');
+    document.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+        card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // Reset card transform on mouse leave
+    document.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+    });
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
